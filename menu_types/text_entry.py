@@ -54,6 +54,9 @@ class TextEntry(BaseMenu):
             # Else, last input was invalid, clear screen and print invalid input error before prompt
             entry = input(self.inval_prompt + self._prompt)
             self.val_input = True
+		
+		# Scrub entry of arrow key escape characters
+        entry = entry.replace('\x1b[A', '').replace('\x1b[B', '').replace('\x1b[C', '').replace('\x1b[D', '')
 
         if len(entry) < 1:
             return False, 'Nothing entered! '
